@@ -1,0 +1,8 @@
+{
+  "name": "Copy of FridgeBurn AI",
+  "description": "A Cyber-Kitchen experience where an AI guardian roasts your fridge contents, calculates your 'Sinner Score', and rescues leftovers with creative recipes.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
