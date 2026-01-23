@@ -1,18 +1,26 @@
 
 export enum PersonaType {
-  GYM_TRAINER = 'GYM_TRAINER',
-  DESI_MOM = 'DESI_MOM',
-  GORDON_RAMSAY = 'GORDON_RAMSAY'
+  FRIENDLY_CHEF = 'FRIENDLY_CHEF',
+  WITTY_PAL = 'WITTY_PAL',
+  SARCASTIC_COUSIN = 'SARCASTIC_COUSIN',
+  SAVAGE_MOM = 'SAVAGE_MOM',
+  GYM_TRAINER = 'GYM_TRAINER'
+}
+
+export enum LanguageType {
+  ENGLISH = 'en-US',
+  HINDI = 'hi-IN',
+  PUNJABI = 'pa-IN'
 }
 
 export interface DetectedItem {
   name: string;
   category: string;
   healthImpact: 'GOOD' | 'NEUTRAL' | 'BAD';
-  freshness: number; // 0-100
+  freshness: number;
   roast: string;
-  x: number; // 0-100 position for overlay
-  y: number; // 0-100 position for overlay
+  x: number;
+  y: number;
   isExpiryBomb: boolean;
 }
 
@@ -27,12 +35,4 @@ export interface AnalysisResponse {
     ingredients: string[];
     steps: string[];
   };
-}
-
-export interface AppState {
-  image: string | null;
-  isAnalyzing: boolean;
-  results: AnalysisResponse | null;
-  error: string | null;
-  selectedPersona: PersonaType;
 }

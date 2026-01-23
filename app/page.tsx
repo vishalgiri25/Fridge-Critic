@@ -1,13 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { PersonaType, AnalysisResponse, LanguageType } from './types';
-import { analyzeFridge } from './services/geminiService';
-import Scanner, { ScannerHandle } from './components/Scanner';
-import AnalysisDisplay from './components/AnalysisDisplay';
-import PersonaSelector from './components/PersonaSelector';
-import VoiceInteraction from './components/VoiceInteraction';
+
+"use client";
+
+import React, { useState, useRef } from 'react';
+import { PersonaType, AnalysisResponse, LanguageType } from '../types';
+import { analyzeFridge } from '../services/geminiService';
+import Scanner, { ScannerHandle } from '../components/Scanner';
+import AnalysisDisplay from '../components/AnalysisDisplay';
+import PersonaSelector from '../components/PersonaSelector';
+import VoiceInteraction from '../components/VoiceInteraction';
 import { Globe, ShieldCheck, PieChart, UtensilsCrossed, Sparkles } from 'lucide-react';
 
-const App: React.FC = () => {
+export default function Home() {
   const [image, setImage] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [results, setResults] = useState<AnalysisResponse | null>(null);
@@ -21,7 +24,6 @@ const App: React.FC = () => {
     setIsAnalyzing(true);
     setError(null);
     try {
-      // Pass both persona and language to the analysis service
       const data = await analyzeFridge(base64, persona, language);
       setResults(data);
     } catch (err) {
@@ -75,7 +77,6 @@ const App: React.FC = () => {
           <div className="flex flex-col gap-3">
             <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">Language</span>
             <div className="flex items-center gap-2 glass p-1.5 rounded-2xl">
-              {/* Removed HARYANVI and HINGLISH as they are not defined in the LanguageType enum */}
               {[
                 { id: LanguageType.ENGLISH, label: 'EN' },
                 { id: LanguageType.HINDI, label: 'HI' },
@@ -150,6 +151,4 @@ const App: React.FC = () => {
       </footer>
     </div>
   );
-};
-
-export default App;
+}

@@ -1,0 +1,60 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 241, 245, 249;
+  --background-start-rgb: 10, 12, 16;
+  --background-end-rgb: 15, 23, 42;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-start-rgb));
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+.font-space {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-heavy {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.premium-shadow {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.subtle-glow {
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.1);
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-scan {
+  animation: scan 3s linear infinite;
+  position: absolute;
+}

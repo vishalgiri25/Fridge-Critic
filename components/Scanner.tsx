@@ -1,6 +1,8 @@
 
+"use client";
+
 import React, { useRef, useImperativeHandle, forwardRef } from 'react';
-import { Camera, Upload, ScanLine } from 'lucide-react';
+import { Camera, PlusCircle } from 'lucide-react';
 
 interface ScannerProps {
   onImageCapture: (base64: string) => void;
@@ -34,11 +36,14 @@ const Scanner = forwardRef<ScannerHandle, ScannerProps>(({ onImageCapture, isAna
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
-      <div className="relative group cursor-pointer" onClick={() => !isAnalyzing && fileInputRef.current?.click()}>
-        <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-magenta-500 to-lime-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+    <div className="w-full max-w-5xl mx-auto">
+      <div 
+        className="relative group cursor-pointer" 
+        onClick={() => !isAnalyzing && fileInputRef.current?.click()}
+      >
+        <div className="absolute inset-0 bg-sky-500/5 rounded-[3rem] blur-3xl opacity-0 group-hover:opacity-100 transition duration-1000"></div>
         
-        <div className="relative glass rounded-3xl p-12 flex flex-col items-center justify-center border border-white/10 overflow-hidden min-h-[400px]">
+        <div className="relative glass rounded-[3rem] p-16 md:p-24 flex flex-col items-center justify-center border border-white/10 overflow-hidden min-h-[450px] transition-all duration-500 group-hover:border-white/20 group-hover:shadow-2xl">
           <input 
             type="file" 
             ref={fileInputRef} 
@@ -47,35 +52,30 @@ const Scanner = forwardRef<ScannerHandle, ScannerProps>(({ onImageCapture, isAna
             onChange={handleFileChange} 
           />
           
-          <div className="flex flex-col items-center space-y-6 text-center z-20">
-            <div className="p-6 bg-white/5 rounded-full border border-white/10 group-hover:border-cyan-500/50 group-hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] transition-all duration-500">
-              <Camera className="w-16 h-16 text-cyan-400" />
+          <div className="flex flex-col items-center space-y-8 text-center max-w-lg">
+            <div className="w-24 h-24 rounded-[2rem] bg-white/5 flex items-center justify-center border border-white/10 group-hover:scale-110 group-hover:bg-white/10 transition-all duration-700">
+              <Camera className="w-10 h-10 text-slate-400 group-hover:text-white transition-colors" />
             </div>
             
-            <div className="space-y-2">
-              <h3 className="text-3xl font-black font-orbitron tracking-tight text-white">OPEN YOUR FRIDGE</h3>
-              <p className="text-gray-400 text-lg max-w-md mx-auto">
-                Capture the chaos. Let the AI judge your nutritional sins and rescue your leftovers.
+            <div className="space-y-3">
+              <h3 className="text-3xl md:text-4xl font-space font-extrabold text-white tracking-tight">Sync Your Inventory</h3>
+              <p className="text-slate-400 text-lg leading-relaxed">
+                Provide a clear view of your fridge. Our intelligence will evaluate the landscape and offer playful guidance.
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4 pt-4">
-              <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10 text-xs font-bold text-gray-300">
-                <ScanLine className="w-4 h-4 text-lime-400" /> REAL-TIME VISION
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10 text-xs font-bold text-gray-300">
-                <Upload className="w-4 h-4 text-cyan-400" /> JPEG / PNG
+            <div className="pt-4">
+              <div className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold text-sm rounded-2xl hover:scale-[1.02] active:scale-95 transition-all">
+                <PlusCircle className="w-5 h-5" /> Select Image
               </div>
             </div>
-          </div>
-
-          <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-500/20 via-transparent to-transparent"></div>
           </div>
         </div>
       </div>
     </div>
   );
 });
+
+Scanner.displayName = 'Scanner';
 
 export default Scanner;

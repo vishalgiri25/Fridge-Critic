@@ -1,7 +1,9 @@
 
+"use client";
+
 import React from 'react';
 import { PersonaType } from '../types';
-import { Dumbbell, Utensils, Flame } from 'lucide-react';
+import { Coffee, Sparkles, Dumbbell, Heart } from 'lucide-react';
 
 interface PersonaSelectorProps {
   selected: PersonaType;
@@ -11,45 +13,50 @@ interface PersonaSelectorProps {
 const PersonaSelector: React.FC<PersonaSelectorProps> = ({ selected, onSelect }) => {
   const personas = [
     { 
-      id: PersonaType.GORDON_RAMSAY, 
-      label: 'Ramsay', 
-      icon: <Flame className="w-4 h-4" />,
-      color: 'hover:text-red-400',
-      activeColor: 'bg-red-500/20 text-red-400 border-red-500/50'
+      id: PersonaType.WITTY_PAL, 
+      label: 'Witty Pal', 
+      icon: <Sparkles className="w-4 h-4" />,
+      activeClass: 'bg-sky-500/10 text-sky-400 border-sky-500/30'
+    },
+    { 
+      id: PersonaType.SAVAGE_MOM, 
+      label: 'Savage Mom', 
+      icon: <Heart className="w-4 h-4" />,
+      activeClass: 'bg-rose-500/10 text-rose-400 border-rose-500/30'
     },
     { 
       id: PersonaType.GYM_TRAINER, 
-      label: 'Trainer', 
+      label: 'Gym Bro', 
       icon: <Dumbbell className="w-4 h-4" />,
-      color: 'hover:text-cyan-400',
-      activeColor: 'bg-cyan-500/20 text-cyan-400 border-cyan-500/50'
+      activeClass: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
     },
     { 
-      id: PersonaType.DESI_MOM, 
-      label: 'Desi Mom', 
-      icon: <Utensils className="w-4 h-4" />,
-      color: 'hover:text-magenta-400',
-      activeColor: 'bg-magenta-500/20 text-magenta-400 border-magenta-500/50'
+      id: PersonaType.FRIENDLY_CHEF, 
+      label: 'Chef', 
+      icon: <Coffee className="w-4 h-4" />,
+      activeClass: 'bg-amber-500/10 text-amber-400 border-amber-500/30'
     },
   ];
 
   return (
-    <div className="flex items-center glass rounded-2xl p-1.5 border-white/5 backdrop-blur-xl">
-      <span className="text-[10px] font-black text-gray-500 uppercase px-3 tracking-widest hidden md:block border-r border-white/10 mr-2">Guardian</span>
-      {personas.map((p) => (
-        <button
-          key={p.id}
-          onClick={() => onSelect(p.id)}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 ${p.color} ${
-            selected === p.id 
-              ? p.activeColor + ' shadow-[0_0_15px_rgba(0,0,0,0.5)] scale-105 border' 
-              : 'text-gray-400 hover:bg-white/5'
-          }`}
-        >
-          {p.icon}
-          <span className="hidden sm:inline">{p.label}</span>
-        </button>
-      ))}
+    <div className="flex flex-col gap-3">
+      <span className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">Archetype</span>
+      <div className="flex items-center gap-2 glass p-1.5 rounded-2xl flex-wrap">
+        {personas.map((p) => (
+          <button
+            key={p.id}
+            onClick={() => onSelect(p.id)}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-300 border border-transparent ${
+              selected === p.id 
+                ? p.activeClass
+                : 'text-slate-400 hover:text-white hover:bg-white/5'
+            }`}
+          >
+            {p.icon}
+            <span>{p.label}</span>
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
